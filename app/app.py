@@ -23,7 +23,10 @@ def addinvoice():
         description = request.form.get('desp')
         invoiceno = request.form.get('invoiceno')
         invoicetotal = request.form.get('invoicetotal')
+        db_func.get_db()
         flash('Invoice added!', category='greenlight')
+        
+        
         
         # error = db_func.validate_invoice_form(customername, customeraddress, date, description, invoiceno, invoicetotal)
         # if error is not None:

@@ -13,15 +13,12 @@ conn_str = f"DRIVER={driver};SERVER={server};DATABASE={database};UID={username};
 #conn = pyodbc.connect(conn_str)
 
 def get_db():
-    server = 'flaskwebapp-db-server.database.windows.net'
-    database = 'FlaskWebAppDB'
-    username = 'gyodicvvja@flaskwebapp-db-server.database.windows.net'
-    password = 'JDVY5MHFF6B3X433$'
-    driver= '{ODBC Driver 18 for SQL Server}'
-
-    conn_str = f"DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}"
-    conn = pyodbc.connect(conn_str)
-    return conn
+    try:
+        conn = pyodbc.connect(conn_str)
+        return conn
+    except pyodbc.Error as e:
+        print(f"An error occurred while connecting to the database: {e}")
+        return None
 
 
 def check_db_exist():
