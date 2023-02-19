@@ -1,6 +1,7 @@
 #import sqlite3
 import pyodbc
 #import os 
+
 server = 'flaskwebapp-db-server.database.windows.net'
 database = 'FlaskWebAppDB'
 username = 'gyodicvvja@flaskwebapp-db-server.database.windows.net'
@@ -12,6 +13,13 @@ conn_str = f"DRIVER={driver};SERVER={server};DATABASE={database};UID={username};
 #conn = pyodbc.connect(conn_str)
 
 def get_db():
+    server = 'flaskwebapp-db-server.database.windows.net'
+    database = 'FlaskWebAppDB'
+    username = 'gyodicvvja@flaskwebapp-db-server.database.windows.net'
+    password = 'JDVY5MHFF6B3X433$'
+    driver= '{ODBC Driver 18 for SQL Server}'
+
+    conn_str = f"DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}"
     conn = pyodbc.connect(conn_str)
     return conn
 
