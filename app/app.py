@@ -24,10 +24,6 @@ def addinvoice():
         invoiceno = request.form.get('invoiceno')
         invoicetotal = request.form.get('invoicetotal')
         
-        flash('Invoice added!', category='greenlight')
-        
-        
-        
         error = validate_invoice_form(customername, customeraddress, date, description, invoiceno, invoicetotal)
         if error is not None:
             flash(error, category='redlight')
