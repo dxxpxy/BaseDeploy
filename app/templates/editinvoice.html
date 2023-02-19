@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Edit Invoice {% endblock %}
+{% block content %}
+
+<br/>
+<h3 class = "nav-item" >Edit Invoice</h3>
+
+<form method="POST" action="{{ url_for('editinvoice', invoice_id=invoice[0]) }}">
+
+  <div class="form-group">
+
+    <label for="invoicetotal">Invoice Total:</label>
+
+    <div class="d-flex flex-column">
+
+      <input class="form-control" type="number" id="invoicetotal" name="invoicetotal" value="{{ invoice[6] }}" required>
+
+      <button class="btn btn-primary mt-3" type="submit">Update Invoice</button>
+
+    </div>
+
+  </div>
+
+</form>
+
+{% endblock %}
