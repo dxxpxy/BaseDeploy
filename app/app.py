@@ -76,6 +76,3 @@ if __name__ == '__main__':
     app.secret_key = 'asdasdasd'
     app.run(debug=True)
 
-
-
-#gunicorn --bind=0.0.0.0 --timeout 600 startup:app
