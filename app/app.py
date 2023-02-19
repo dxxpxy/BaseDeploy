@@ -65,6 +65,13 @@ def editinvoice(invoice_id):
     # Render edit form with invoice data
     return render_template('editinvoice.html', invoice=invoice)
 
+@app.route('/deleteinvoice/<int:invoice_id>', methods=['POST'])
+def deleteinvoice(invoice_id):
+    # Connect to database and delete invoice record
+    execute_sql('DELETE FROM invoice WHERE id = ?', invoice_id,)
+    flash('Invoice deleted!', category='greenlight')
+    return redirect('/viewinvoice')  
+
 if __name__ == '__main__':
     app.secret_key = 'asdasdasd'
     app.run(debug=True)
