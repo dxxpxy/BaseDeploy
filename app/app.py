@@ -46,6 +46,25 @@ def viewinvoice():
     invoices = run_query('SELECT * FROM invoice')
     return render_template("invoice.html", invoices=invoices) 
 
+@app.route('/editinvoice/<int:invoice_id>', methods=['GET', 'POST'])
+def editinvoice(invoice_id):
+    # Connect to database and retrieve invoice data
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM invoice WHERE id = ?', (invoice_id,))
+    invoice = cursor.fetchone()
+    conn.close()
+
+    if request.method == 'POST':
+        # Retrieve new invoice total from form data
+        new_invoicetotal = request.form['invoicetotal']
+        execute_sql('UPDATE invoice SET invoicetotal = ? WHERE id = ?', new_invoicetotal, invoice_id)
+        flash('Invoice updated!', category='greenlight')
+        return redirect('/viewinvoice')
+
+    # Render edit form with invoice data
+    return render_template('editinvoice.html', invoice=invoice)
+
 if __name__ == '__main__':
     app.secret_key = 'asdasdasd'
     app.run(debug=True)
