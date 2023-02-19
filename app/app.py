@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint, render_template, request, flash, redirect
 #import sqlite3
 from datetime import datetime
-from db_func.db_func import get_db, validate_invoice_form, execute_sql
+from db_func.db_func import get_db, validate_invoice_form, execute_sql, run_query
 #import db_func
 #import os 
 
@@ -40,6 +40,11 @@ def addinvoice():
           
     return render_template("Form.html")
 
+@app.route('/viewinvoice')
+def viewinvoice():
+    
+    invoices = run_query('SELECT * FROM invoice')
+    return render_template("invoice.html", invoices=invoices) 
 
 if __name__ == '__main__':
     app.secret_key = 'asdasdasd'
