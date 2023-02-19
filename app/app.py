@@ -1,8 +1,7 @@
 from flask import Flask, Blueprint, render_template, request, flash, redirect
 #import sqlite3
 from datetime import datetime
-from db_func.db_func import execute_sql, get_db, run_query, validate_invoice_form
-
+import db_func
 #import os 
 
 app = Flask(__name__)
