@@ -53,8 +53,14 @@ def editinvoice(invoice_id):
 
     if request.method == 'POST':
         # Retrieve new invoice total from form data
-        new_invoicetotal = request.form['invoicetotal']
-        execute_sql('UPDATE invoice SET invoicetotal = ? WHERE id = ?', new_invoicetotal, invoice_id)
+        new_customername = request.form['customername']
+        new_customeraddress = request.form['customeraddress']
+        new_date = request.form['date']
+        new_description = request.form['desp']
+        new_invoiceno = request.form['invoiceno']
+        new_invoicetotal = request.form['invoicetotal']        
+        execute_sql('UPDATE invoice SET customername = ?, customeraddress = ?, date = ?, description = ?, invoiceno = ?, invoicetotal = ? WHERE id = ?', 
+        new_customername, new_customeraddress, new_date, new_description, new_invoiceno, new_invoicetotal, invoice_id)
         flash('Invoice updated!', category='greenlight')
         return redirect('/viewinvoice')
 
