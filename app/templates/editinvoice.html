@@ -7,17 +7,28 @@
 
 <form method="POST" action="{{ url_for('editinvoice', invoice_id=invoice[0]) }}">
 
-  <div class="form-group">
+  <div class="form-group d-flex flex-column">
+
+    <label for="customername">Customer name:</label>
+    <input class="form-control" type="text" id="customername" name="customername" value="{{ invoice[1] }}" required>
+
+    <label for="customeraddress">Address:</label>
+    <input class="form-control" type="text" id="customeraddress" name="customeraddress" value="{{ invoice[2] }}" required>
+
+    <label for="date">Date:</label>
+    <input class="form-control" type="date" id="date" name="date" value="{{ invoice[3] }}" required>
+    
+    <label for="desp">Description:</label>
+    <input class="form-control" type="text" id="desp" name="desp" value="{{ invoice[4] }}" required>
+
+    <label for="invoiceno">Invoice no:</label>
+    <input class="form-control" type="number" id="invoiceno" name="invoiceno" value="{{ invoice[5] }}" required>
 
     <label for="invoicetotal">Invoice Total:</label>
+    <input class="form-control" type="number" id="invoicetotal" name="invoicetotal" value="{{ invoice[6] }}" required>
 
-    <div class="d-flex flex-column">
+    <button class="btn btn-primary mt-3" type="submit">Update Invoice</button>
 
-      <input class="form-control" type="number" id="invoicetotal" name="invoicetotal" value="{{ invoice[6] }}" required>
-
-      <button class="btn btn-primary mt-3" type="submit">Update Invoice</button>
-
-    </div>
 
   </div>
 
