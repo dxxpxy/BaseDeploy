@@ -21,14 +21,14 @@ def get_db():
         return None
 
 
-def check_db_exist():
-    conn = pyodbc.connect(conn_str)
-    cursor = conn.cursor()
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
-    if not cursor.fetchall():
-        script = open('Website1/schema.sql').read()
-        conn.executescript(script)
-        conn.close()
+# def check_db_exist():
+#     conn = pyodbc.connect(conn_str)
+#     cursor = conn.cursor()
+#     cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+#     if not cursor.fetchall():
+#         script = open('Website1/schema.sql').read()
+#         conn.executescript(script)
+#         conn.close()
 
 
 def run_query(sql):

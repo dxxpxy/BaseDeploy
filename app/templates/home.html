@@ -3,17 +3,71 @@
 {% block title %} Home {% endblock %}
 
 {% block content %} <br/> 
-<h3 class = "nav-item" > This is the Home Page</h3>
-<button class = "btn btn-primary" onclick="changeColor()">Click to see what happens</button>
+<h3 class = "nav-item " >Home Page</h3>
+<br/>
+<br/>
+
+<div id="typing-animation" style="background-color: rgb(11, 125, 255); color: rgb(255, 255, 255);  
+border-radius: 6px; height: 300px; padding: 20px;">
+<p id="typing-animation"></p>
+
+</div>
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 35vh;">
+  <div class = "text-center">
+<button  class = "btn btn-primary" onclick="changeColor()">Click for something</button>
+<button  class = "btn btn-primary" onclick="money()">I'm feeling something</button>
+    
+  </div>
+</div>
+
 
 <script>
+  var text = " This is a website where you can organise all your invoices. From the classic wallet ripping restaurant you went to last saturday to the £3.45 you spent on the Caramel Grande this morning. We have got you covered. Now get comfortable as your invoice journey is about to begin. Navigate through the top nav-bar to add your first invoice."; // Replace this with your own text
+  var speed = 30; // Adjust this to control the typing speed
+
+  function typeWriter(text, i, fnCallback) {
+    if (i < text.length) {
+      document.getElementById("typing-animation").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(function() {
+        typeWriter(text, i, fnCallback)
+      }, speed);
+    } else if (typeof fnCallback == "function") {
+      setTimeout(fnCallback, speed);
+    }
+  }
+
+  function startAnimation() {
+    var element = document.getElementById("typing-animation");
+    element.innerHTML = ""; // Clear the contents of the element
+    typeWriter(text, 0, function() {
+      // Callback function when typing animation is complete
+      console.log("Typing animation complete.");
+    });
+  }
+
+  // Call the startAnimation function when the page is loaded
+  window.onload = function() {
+    startAnimation();
+  }
+</script>
+  <script>
     function changeColor() {
+      document.body.style.backgroundImage = "url('')";
+
       var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
       document.body.style.backgroundColor = randomColor;
+      
+      }
+      function money() {
+        
+        document.body.style.backgroundImage = "url('https://thumbs.dreamstime.com/z/money-background-close-up-lots-new-us-dollar-bills-58726548.jpg')";
+        document.body.style.backgroundSize = "cover";
+        }
      
-    }
+    
     </script>
-
 
 {% endblock %}
 
