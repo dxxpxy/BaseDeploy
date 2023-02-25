@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %} Edit Invoice {% endblock %}
 {% block content %}
-
+<body style="background-image: url('{{ url_for('static', filename='invoicebackground.jpg') }}');">
 <br/>
 <h3 class = "nav-item" >Edit Invoice</h3>
 
@@ -33,10 +33,5 @@
   </div>
 
 </form>
-<style>
-body {
-  background-image: url("static/invoicebackground.jpg");
-  background-size: cover; /* This will make the image cover the whole screen */
-}
-</style>
+</body>
 {% endblock %}
