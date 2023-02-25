@@ -26,18 +26,17 @@
 </nav> -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-      <span class="navbar-toggler-icon"></span>    
-    </button>
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <a class="navbar-brand ms-auto" id="invoiceportal" href="/" style="font-weight:bold; color:#ffffff; font-size:20px; text-shadow: 0 0 4px black;">{% block navcontent %}Invoice Portal{% endblock%}</a>
+      <button class="navbar-toggler me-auto" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
     <div class="collapse navbar-collapse" id="navbar">
-      <div class="navbar-nav float-left">
-        <a class="nav-item nav-link" id="home" href="/">Home</a>
-        <a class="nav-item nav-link" id="addinvoice" href="/addinvoice">Add Invoice</a> 
-        <a class="nav-item nav-link" id="viewinvoice" href="/viewinvoice">View Invoice</a>       
-      </div>
-      <div class="navbar-nav mx-auto">
-        <h2 class="text-center" style="font-weight:bold; color:#ffffff; font-size:20px; text-shadow: 0 0 4px black; position: relative; left: -50%; transform: translateX(50%);">{% block navcontent %}Invoice Portal{% endblock%}</h2>
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" id="addinvoice" href="/addinvoice">Add&nbsp;Invoice</a>
+        <a class="nav-item nav-link" id="viewinvoice" href="/viewinvoice">View&nbsp;Invoice</a>
       </div>
     </div>
   </div>
