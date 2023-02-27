@@ -76,5 +76,5 @@ def deleteinvoice(invoice_id):
 
 if __name__ == '__main__':
     # app.secret_key = 'asdasdasd'
-    # app.run(debug=True)
+     app.run()
 
