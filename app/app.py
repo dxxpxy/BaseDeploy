@@ -75,6 +75,6 @@ def deleteinvoice(invoice_id):
     return redirect('/viewinvoice')  
 
 if __name__ == '__main__':
-    app.secret_key = 'asdasdasd'
-    app.run(debug=True)
+    # app.secret_key = 'asdasdasd'
+    # app.run(debug=True)
 
