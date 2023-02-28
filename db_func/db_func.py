@@ -20,17 +20,6 @@ def get_db():
         print(f"An error occurred while connecting to the database: {e}")
         return None
 
-
-# def check_db_exist():
-#     conn = pyodbc.connect(conn_str)
-#     cursor = conn.cursor()
-#     cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
-#     if not cursor.fetchall():
-#         script = open('Website1/schema.sql').read()
-#         conn.executescript(script)
-#         conn.close()
-
-
 def run_query(sql):
     conn = get_db()
     cursor = conn.cursor()
