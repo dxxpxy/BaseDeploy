@@ -1,11 +1,11 @@
-from flask import Flask, Blueprint, render_template, request, flash, redirect
-
+# Import Flask module and initialize app
+from flask import Flask, render_template, request, flash, redirect
 from datetime import datetime
+# Import database functions from db_func
 from db_func.db_func import get_db, validate_invoice_form, execute_sql, run_query
  
 
-# Import Flask module and initialize app
-from flask import Flask, render_template, request, flash
+
 app = Flask(__name__)
 
 # Set secret key for session management
