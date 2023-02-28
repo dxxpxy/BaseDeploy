@@ -4,18 +4,25 @@ from datetime import datetime
 from db_func.db_func import get_db, validate_invoice_form, execute_sql, run_query
  
 
+# Import Flask module and initialize app
+from flask import Flask, render_template, request, flash
 app = Flask(__name__)
+
+# Set secret key for session management
 app.config['SECRET_KEY'] = 'your-secret-key'
 
+# Defines route for homepage
 @app.route('/',  methods=['GET','POST'])
 def home():
+    # Render home.html from template
     return render_template("home.html")
 
+# Define route for addinvoice
 @app.route('/addinvoice', methods = ['GET', 'POST'])
 def addinvoice(): 
-         
+    # Check if request is POST, form submitted
     if request.method == 'POST':
-                
+        # Get form data from request object
         customername = request.form.get('customername')
         customeraddress = request.form.get('customeraddress')
         date = request.form.get('date')       
@@ -23,20 +30,28 @@ def addinvoice():
         invoiceno = request.form.get('invoiceno')
         invoicetotal = request.form.get('invoicetotal')
         
+        # Validate form data and flash error message if necessary
         error = validate_invoice_form(customername, customeraddress, date, description, invoiceno, invoicetotal)
         if error is not None:
+            # Display error message in flash message
             flash(error, category='redlight')
         else:
-            execute_sql('INSERT INTO invoice (customername, customeraddress, date, description, invoiceno, invoicetotal) VALUES (?, ?, ?, ?, ?, ?)', customername, customeraddress, date, description, invoiceno, invoicetotal)
+            # If form data is valid, insert data into database
+            execute_sql('INSERT INTO invoice (customername, customeraddress, date, description, invoiceno, invoicetotal) VALUES (?, ?, ?, ?, ?, ?)', 
+                        customername, customeraddress, date, description, invoiceno, invoicetotal)
+            # Display success message in flash message
             flash('Invoice added!', category='greenlight')
           
+    # Render Form.html 
     return render_template("Form.html")
 
+# Define route for viewinvoice
 @app.route('/viewinvoice')
 def viewinvoice():
     
     invoices = run_query('SELECT * FROM invoice')
-    return render_template("invoice.html", invoices=invoices) 
+ 
+    return render_template("invoice.html", invoices=invoices)
 
 @app.route('/editinvoice/<int:invoice_id>', methods=['GET', 'POST'])
 def editinvoice(invoice_id):
@@ -48,7 +63,7 @@ def editinvoice(invoice_id):
     conn.close()
 
     if request.method == 'POST':
-        # Retrieve new invoice total from form data
+        # Retrieve all updated data from the form 
         new_customername = request.form['customername']
         new_customeraddress = request.form['customeraddress']
         new_date = request.form['date']
@@ -60,7 +75,7 @@ def editinvoice(invoice_id):
         flash('Invoice updated!', category='greenlight')
         return redirect('/viewinvoice')
 
-    # Render edit form with invoice data
+    # Render editinvoicea
     return render_template('editinvoice.html', invoice=invoice)
 
 @app.route('/deleteinvoice/<int:invoice_id>', methods=['POST'])
@@ -71,6 +86,5 @@ def deleteinvoice(invoice_id):
     return redirect('/viewinvoice')  
 
 if __name__ == '__main__':
-    # app.secret_key = 'asdasdasd'
      app.run()
 
